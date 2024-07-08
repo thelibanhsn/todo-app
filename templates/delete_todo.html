@@ -1,0 +1,30 @@
+{% from 'bootstrap4/form.html' import render_field %}
+
+<!DOCTYPE html>
+<html lang="en">
+{% include 'head.html' %}
+<body class="container">
+    <nav class="nav  ">
+        <a class="nav-link active" href="/">Dashboard</a>
+        <p class="nav-link" >Welcome {{name}}</p>
+        <a class="nav-link ml-auto" href="{{url_for('logout')}}">Logout</a>
+    </nav>
+    <hr>
+    <div class="container rounded border p-4 m-4">
+
+        <h2>Delete Todo</h2>
+
+        <form action="{{url_for('delete_todo', todo_id=todo.id)}}" method="post" class="my-4">
+            {{ form.hidden_tag() }}
+            {{ render_field(form.title, value=todo.title) }}
+            {{ render_field(form.description, readonly) }}
+            {{ render_field(form.is_completed, value=todo.is_completed, type='checkbox') }}
+            <input type="submit" class="btn btn-danger" value="Delete Todo" >
+
+        </form>
+    </div>
+
+    {{ bootstrap.load_js() }}
+
+</body>
+</html>

@@ -1,0 +1,32 @@
+{% from 'bootstrap4/form.html' import render_field %}
+
+<!DOCTYPE html>
+<html lang="en">
+{% include 'head.html' %}
+<body class="container">
+    <nav class="nav  ">
+        <a class="nav-link active" href="/">Dashboard</a>
+        <p class="nav-link" >Welcome {{name}}</p>
+        <a class="nav-link ml-auto" href="{{url_for('logout')}}">Logout</a>
+    </nav>
+    <hr>
+    <div class="container p-4 m-4 rounded border">
+
+        <h2>Update Todo</h2>
+        <form action="{{url_for('edit_todo', todo_id=todo.id)}}" method="post" class="my-4 ">
+            {{ form.hidden_tag() }}
+            {{ render_field(form.title, value=todo.title) }}
+            {{ render_field(form.description) }}
+            
+            {{ render_field(form.is_completed) }}
+                        
+            
+            <input type="submit" class="btn btn-lg btn-primary" value="Update" >
+
+        </form>
+    </div>
+
+    {{ bootstrap.load_js() }}
+
+</body>
+</html>

@@ -1,0 +1,32 @@
+{% from 'bootstrap4/form.html' import render_field, render_hidden_errors %}
+<!DOCTYPE html>
+<html lang="en">
+{% include 'head.html' %}
+<body class="container">
+    
+    <div class=" border rounded m-4 p-4">
+
+        <h2>User Login</h2>
+
+        <form action="{{url_for('login')}}" method="post" class="my-4">
+            {{ form.hidden_tag() }}
+
+            {% if form.errors %}
+                <div class="invalid-feedback">
+                {% for error in form.errors %}
+                    <p>{{ error }}</p>
+                {% endfor %}
+                </div>
+            {% endif %}            {{ render_field(form.email) }}
+            {{ render_field(form.password) }}
+            <input type="submit" class="btn btn-primary" value="Login" >
+
+        </form>
+        <p>Don't have an account, Register <a href='/register'>here</a></p>
+
+    </div>
+
+      {{ bootstrap.load_js() }}
+
+</body>
+</html>
